@@ -19,10 +19,11 @@
 #' (in accordance with the NMF package definition) 
 #' @param alpha Nonnegative parameter of the accelerated method
 #' @param maxiter Maximum number of iterations
+#' @param checkDivergence currently not in use, to be implemented
 #' @return Resulting NMF model (in accordance with the NMF package definition) 
 #' @author nsauwen
 #' @export
-HALSacc <- function (X,nmfMod,alpha = 1,maxiter = 1000) {
+HALSacc <- function (X,nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALSE) {
 
   # Initialization
   nRows <- nrow(X)

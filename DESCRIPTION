@@ -1,10 +1,11 @@
 Package: hNMF
 Title: Hierarchical Non-Negative Matrix Factorization
-Version: 0.2
+Version: 0.3
 Author: Nicolas Sauwen
 Maintainer: Nicolas Sauwen <nicolas.sauwen@openanalytics.eu>
 Description: Hierarchical non-negative matrix factorization
-	for tumor segmentation based on multi-parametric MRI data.
+	for tumor segmentation based on multi-parametric MRI data. 
+	Several NMF algorithms are available.
 Depends: R (>= 3.3.2)
 License: GPL-3
 Encoding: UTF-8
@@ -14,6 +15,6 @@ Imports: NMF, oro.nifti, tcltk, nnls, R.matlab, spatialfil,
 RoxygenNote: 6.0.0
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2017-03-15 08:50:19 UTC; nsauwen
+Packaged: 2017-06-07 13:38:21 UTC; nsauwen
 Repository: CRAN
-Date/Publication: 2017-03-15 14:36:51
+Date/Publication: 2017-06-07 17:20:48 UTC

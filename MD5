@@ -1,6 +1,7 @@
-c52b191ae7e4777db7a6c3b6bf1de239 *DESCRIPTION
-118abf9aa614b4bc26f9f06c5b5b7429 *NAMESPACE
-0391019967e58084a939696c0a6a9b92 *R/HALSacc.R
+5a1bcb976beae2d555ff97515a08c45d *DESCRIPTION
+b5ae8fe78219e6e177be20fdae594cba *NAMESPACE
+57ae121b5f68d8787f031a5825905938 *R/HALSacc.R
+833921b099f60953a855f885c44c6947 *R/PGNMF.R
 b9234919b10246396fbe8baf8b525709 *R/hNMF.R
 fbc97ddeae7976af3e14ea7a7bcbf0af *R/imoverlay.R
 9f2fd1710ea2f65f5664f6d1ed0956f2 *R/imoverlay_2masks.R
@@ -14,12 +15,15 @@ c80442714c3244ce651661f3edb6744a *R/plotAbundances.R
 dd6ead37e330f227eb08e555c0e24d2c *inst/extdata/edema.nii
 2ebbe88517f8afe55729b9e082d3e0c3 *inst/extdata/necrosis.nii
 c3a5ba92d9f036550054e9384b5fe61f *inst/extdata/tumor.nii
-570c9dba6276adaf676e84ca618cb3e1 *man/HALSacc.Rd
+744c1198c88070b57ccfd580a0a0aa62 *man/HALSacc.Rd
 bcad954b83c9853c6b570a6ebea998a4 *man/HALSupdt.Rd
+fff2654a5639a863d01dd476ae6be6be *man/PGNMF.Rd
+9cb0d235e4454ffc364fc1e963c9e28d *man/divergenceCheck.Rd
 b0e04188ffe8aec5d38b981c17f1dd9d *man/hNMF.Rd
 ba2631eb4a4eb7772cb57597835a180d *man/imoverlay.Rd
 60da5f056081be67581af85fb55a1d31 *man/importMatlabMriData.Rd
 addf6f99dbab37f8343f23a1699bbdcb *man/initializeSPA.Rd
+a9032b410b5355263f739d4be2754f90 *man/nlsSubProb.Rd
 2658c0a21250916728f0d242de96dd67 *man/validateNMFResult.Rd
 9c80b5ce5a7226f6aa8ed3ac66e8d4db *man/viewNMFResult.Rd
 77e5053c82f70a3ce74ccc6628981bc7 *tests/testthat.R

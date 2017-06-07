@@ -6,7 +6,7 @@
 Nonnegative matrix factorization: complexity, algorithms and applications 
 [Section 4.2, Algo. 6], PhD thesis, Université catholique de Louvain, February 2011.}
 \usage{
-HALSacc(X, nmfMod, alpha = 1, maxiter = 1000)
+HALSacc(X, nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALSE)
 }
 \arguments{
 \item{X}{Input data matrix, each column represents one data point 
@@ -18,6 +18,8 @@ and the rows correspond to the different features}
 \item{alpha}{Nonnegative parameter of the accelerated method}
 
 \item{maxiter}{Maximum number of iterations}
+
+\item{checkDivergence}{currently not in use, to be implemented}
 }
 \value{
 Resulting NMF model (in accordance with the NMF package definition)
