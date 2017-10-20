@@ -33,7 +33,8 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
   startTime <- proc.time()[3]
   W <- NMF::basis(nmfMod)
   H <- NMF::coef(nmfMod)
-  err <- norm(X-W%*%H,'f')
+  err <- rep(0, times = maxIter+1)
+  err[1] <- norm(X-W%*%H,'f')
   err_diff <- Inf
   pNorm <- c()
   
@@ -53,8 +54,8 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
   tolH <- tolW
   
   for(iter in 1:maxIter) {
-    projNorm <- norm(c(gradW[gradW<0 | W>0], gradH[gradH<0 | H>0]), type = "2")
-    pNorm <- c(pNorm,projNorm)
+#    projNorm <- norm(c(gradW[gradW<0 | W>0], gradH[gradH<0 | H>0]), type = "2")
+#    pNorm <- c(pNorm,projNorm)
   
     if(err_diff < tol | proc.time()[3]-startTime > timeLimit | hasDiverged)  break
     
@@ -76,14 +77,14 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
       tolH <- 0.1*tolH
     }
     
-    err <- c(err,norm(X-W%*%H,'f'))
-    err_diff <- abs(err[length(err)] - err[length(err)-1]) / err[length(err)-1]
+    err[iter+1] <- norm(X-W%*%H,'f')
+    err_diff <- abs(err[iter+1] - err[iter]) / err[iter]
     
     if(iterW == 1 | iterH ==1) {
       err_diff <- tol
     }
     
-    if(iter == 2 | iter == 12) { # First condition is to avoid that initial sources could be used for final result
+    if(iter == 3 | iter == 12) { # First condition is to avoid that initial sources could be used for final result
       W_old <- W
       H_old <- H
     }
@@ -102,6 +103,7 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
       }
     }  
   }
+  gc()
   NMF::basis(nmfMod) <- W
   NMF::coef(nmfMod) <- H
   return(nmfMod) 

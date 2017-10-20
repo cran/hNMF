@@ -49,14 +49,14 @@ hNMF <- function(nmfInput,nmfMethod='HALSacc') {
     H0[,iSignal] <- stats::coefficients(nlsFit)
   }
   
-  # Check if NMF method is already available in the NMF package
-  strComp <- match(NMF::nmfAlgorithm(),nmfMethod)
-  if(sum(is.na(strComp)) == length(strComp)) {
-    NMF::setNMFMethod(nmfMethod,get(nmfMethod))
-  }
+#  # Check if NMF method is already available in the NMF package
+#  strComp <- match(NMF::nmfAlgorithm(),nmfMethod)
+#  if(sum(is.na(strComp)) == length(strComp)) {
+#    NMF::setNMFMethod(nmfMethod,get(nmfMethod))
+#  }
   
   nmfInit <- NMF::nmfModel(W=W0,H=H0)
-  nmfOutputLevel1 <- NMF::nmf(x=NMFdata,rank=2,method=nmfMethod,seed=nmfInit)
+  nmfOutputLevel1 <- NMF::nmf(x=NMFdata, rank=2, method=get(nmfMethod), seed=nmfInit)
   
   W2 <- NMF::basis(nmfOutputLevel1)
   H2 <- NMF::coef(nmfOutputLevel1)
@@ -157,7 +157,7 @@ hNMFloop <- function(data,nRows,nCols,nSlices,W_old,H_old,selectVect,rank1,rank2
   }
   
   nmfInit1 <- NMF::nmfModel(W=W01,H=H01)
-  nmfOutput1 <- NMF::nmf(x=data1,rank=rank1,method=nmfMethod,seed=nmfInit1)
+  nmfOutput1 <- NMF::nmf(x=data1,rank=rank1,method=get(nmfMethod),seed=nmfInit1)
   
   Wtemp1 <- NMF::basis(nmfOutput1)
   
@@ -177,7 +177,7 @@ hNMFloop <- function(data,nRows,nCols,nSlices,W_old,H_old,selectVect,rank1,rank2
   }
   
   nmfInit2 <- NMF::nmfModel(W=W02,H=H02)
-  nmfOutput2 <- NMF::nmf(x=data2,rank=rank2,method=nmfMethod,seed=nmfInit2)
+  nmfOutput2 <- NMF::nmf(x=data2,rank=rank2,method=get(nmfMethod),seed=nmfInit2)
   
   Wtemp2 <- NMF::basis(nmfOutput2)
   

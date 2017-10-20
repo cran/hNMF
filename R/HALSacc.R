@@ -28,13 +28,14 @@ HALSacc <- function (X,nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALS
   # Initialization
   nRows <- nrow(X)
   nCols <- ncol(X)
-  iter <- 0
+  iter <- 1
   delta <- 0.01
   relTol <- 1e-5 # Relative convergence tolerance
   relError <- Inf 
   W <- NMF::basis(nmfMod)
   H <- NMF::coef(nmfMod)
-  err <- norm(X-W%*%H,'f')
+  err <- rep(0, times = maxiter+1)
+  err[1] <- norm(X-W%*%H,'f')
   frobX <- norm(X,'f')^2
   
   while(iter < maxiter && relError > relTol) {    
@@ -50,9 +51,8 @@ HALSacc <- function (X,nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALS
     H <- HALSupdt(X,H,B,A,alpha,delta)
     
     # Evaluation of convergence
-    errNew <- sqrt((frobX-2*sum(H*A))+sum(B*(H%*%t(H))))
-    err <- c(err,errNew)
-    relError <- abs(err[length(err)]-err[length(err)-1])/err[length(err)-1]
+	err[iter+1] <- sqrt((frobX-2*sum(H*A))+sum(B*(H%*%t(H))))
+    relError <- abs(err[iter+1]-err[iter])/err[iter]
   
     if(iter%%10 == 0) {
       print(paste("Iteration:",as.character(iter),"Relative error:",as.character(relError)))

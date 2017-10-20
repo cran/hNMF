@@ -9,7 +9,8 @@
 #' @param overlay A matrix, serving as the overlay mask or figure
 #' @param selectVect A matrix (binary values), specifying which matrix elements are to be overlaid
 #' @param color 3-element vector, defining the RGB color to be used in case the overlay is a mask
-#' @return 
+#' @return
+#' @importFrom grDevices rgb
 #' @author Nicolas Sauwen
 #' @export
 imoverlay <- function(image, overlay, selectVect = NULL, color = c(0,1,0)) {
@@ -27,19 +28,44 @@ imoverlay <- function(image, overlay, selectVect = NULL, color = c(0,1,0)) {
   imageRGB <- matrix(data = colorScale1[image],nrow = nRows, ncol = nCols)
   
   # if-loop below verifies whether overlay image is a mask or an actual image
+  alpha <- 0.5 # Opacity of overlay
   if (length(unique(c(overlay)))>2) {
     colorScale2 <- rasterImage::colorPalette(256)
     if(is.null(selectVect)) {
       overlayNonzero <- overlay[overlay!=0]
       overlayNonzero <- round(overlayNonzero/max(overlayNonzero)*255+1)
       overlayNonzeroRGB <- colorScale2[overlayNonzero]
-      imageRGB[overlay != 0] <- overlayNonzeroRGB
+      imageRGB_red <- strtoi(x = substr(imageRGB,2,3), base = 16)
+      imageRGB_green <- strtoi(x = substr(imageRGB,4,5), base = 16)
+      imageRGB_blue <- strtoi(x = substr(imageRGB,6,7), base = 16)
+      imageRGB_red <- imageRGB_red[selectVect != 0]
+      imageRGB_green <- imageRGB_green[selectVect != 0]
+      imageRGB_blue <- imageRGB_blue[selectVect != 0]
+      overlayNonzero_red <- strtoi(x = substr(overlayNonzeroRGB,2,3), base = 16)
+      overlayNonzero_green <- strtoi(x = substr(overlayNonzeroRGB,4,5), base = 16)
+      overlayNonzero_blue <- strtoi(x = substr(overlayNonzeroRGB,6,7), base = 16)
+      imageRGB_combined <- rgb(alpha * imageRGB_red + (1 - alpha) * overlayNonzero_red,
+          alpha * imageRGB_green + (1 - alpha) * overlayNonzero_green,
+          alpha * imageRGB_blue + (1 - alpha) * overlayNonzero_blue, alpha = 255, maxColorValue=255)
+      imageRGB[selectVect != 0] <-  imageRGB_combined
     }
     else {
       overlayNonzero <- overlay[selectVect!=0]
       overlayNonzero <- round(overlayNonzero/max(overlayNonzero)*255+1)
       overlayNonzeroRGB <- colorScale2[overlayNonzero]
-      imageRGB[selectVect != 0] <- overlayNonzeroRGB
+      imageRGB_red <- strtoi(x = substr(imageRGB,2,3), base = 16)
+      imageRGB_green <- strtoi(x = substr(imageRGB,4,5), base = 16)
+      imageRGB_blue <- strtoi(x = substr(imageRGB,6,7), base = 16)
+      imageRGB_red <- imageRGB_red[selectVect != 0]
+      imageRGB_green <- imageRGB_green[selectVect != 0]
+      imageRGB_blue <- imageRGB_blue[selectVect != 0]
+      overlayNonzero_red <- strtoi(x = substr(overlayNonzeroRGB,2,3), base = 16)
+      overlayNonzero_green <- strtoi(x = substr(overlayNonzeroRGB,4,5), base = 16)
+      overlayNonzero_blue <- strtoi(x = substr(overlayNonzeroRGB,6,7), base = 16)
+      imageRGB_combined <- rgb(alpha * imageRGB_red + (1 - alpha) * overlayNonzero_red,
+        alpha * imageRGB_green + (1 - alpha) * overlayNonzero_green,
+        alpha * imageRGB_blue + (1 - alpha) * overlayNonzero_blue, alpha = 255, maxColorValue=255)
+      imageRGB[selectVect != 0] <-  imageRGB_combined
     }
   }
   else {
@@ -48,11 +74,14 @@ imoverlay <- function(image, overlay, selectVect = NULL, color = c(0,1,0)) {
     imageRGB[overlay != 0] <- overlayNonzeroRGB
   }
   
-#  imageRGB[overlay != 0] <- overlayNonzeroRGB
-  
-#  dev.new()
-  graphics::plot(1:nRows, 1:nCols, type = "n", xlab = "", ylab = "") #, axes = FALSE)
-  
+  graphics::plot(1:nRows, 1:nCols, type = "n", xlab = "", ylab = "", legend = T, axes = FALSE)  
   graphics::rasterImage(imageRGB,xleft = 1,ybottom = 1,xright = nCols,ytop = nRows)
+  
+#  tiff("Tissue abundance.tiff", type ="cairo")
+#  graphics::plot(1:nRows+50, 1:nCols, type = "n", xlab = "", ylab = "", legend = T, axes = FALSE)  
+#  graphics::rasterImage(imageRGB,xleft = 18,ybottom = 1,xright = nCols+19,ytop = nRows)
+#  color.legend(210,20,215,195,legend=c("0","0.4", "0.8", "1.2"), cex = 0.9, col = "white", rect.col=colorScale2, align = "rb", gradient = "y")
+#  text(x = 233, y = 108, labels = "Tissue abundance", col = "white", cex=1, srt = 90)
+#  dev.off()
   
 }
