@@ -4,15 +4,14 @@
 ###############################################################################
 
 
-#' Visualization of (h)NMF results
-#' 
-#' (h)NMF abundance maps are plotted overlaid on top of a background (input) image
-#' 
-#' @param nmfInput List with NMF input attributes
-#' @param nmfModel NMF model (in accordance with NMF package definition)
-#' @return 
-#' @author Nicolas Sauwen
-#' @export
+## #' Visualization of (h)NMF results
+## #' 
+## #' (h)NMF abundance maps are plotted overlaid on top of a background (input) image
+## #' 
+## #' @param nmfInput List with NMF input attributes
+## #' @param nmfModel NMF model (in accordance with NMF package definition)
+## #' @return 
+## #' @author Nicolas Sauwen
 viewNMFResult <- function(nmfInput,nmfModel) {
   
 #  library(NMF)

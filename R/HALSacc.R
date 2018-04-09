@@ -21,6 +21,7 @@
 #' @param maxiter Maximum number of iterations
 #' @param checkDivergence currently not in use, to be implemented
 #' @return Resulting NMF model (in accordance with the NMF package definition) 
+#' @importFrom NMF basis coef
 #' @author nsauwen
 #' @export
 HALSacc <- function (X,nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALSE) {
@@ -66,16 +67,15 @@ HALSacc <- function (X,nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALS
 }
 
 
-#' Updating step for accelerated HALS NMF
-#' @param M Input data matrix
-#' @param V Factor matrix to be updated
-#' @param UtU Product of the other transposed factor matrix with itself
-#' @param UtM Product of the other transposed factor matrix with the input matrix
-#' @param alpha Nonnegative parameter of the accelerated method
-#' @param delta Convergence parameter
-#' @return Updated factor matrix V
-#' @author Nicolas Sauwen
-#' @export
+## #' Updating step for accelerated HALS NMF
+## #' @param M Input data matrix
+## #' @param V Factor matrix to be updated
+## #' @param UtU Product of the other transposed factor matrix with itself
+## #' @param UtM Product of the other transposed factor matrix with the input matrix
+## #' @param alpha Nonnegative parameter of the accelerated method
+## #' @param delta Convergence parameter
+## #' @return Updated factor matrix V
+## #' @author Nicolas Sauwen
 HALSupdt <- function (M,V,UtU,UtM,alpha,delta) {
   
   nRows <- nrow(V)

@@ -84,9 +84,9 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
       err_diff <- tol
     }
     
-    if(iter == 3 | iter == 12) { # First condition is to avoid that initial sources could be used for final result
-      W_old <- W
-      H_old <- H
+    if(iter == 1 | iter == 11) { # First condition is to avoid that initial sources could be used for final result
+		W_old <- W
+		H_old <- H
     }
     
     if(iter%%10 == 0) {
@@ -98,8 +98,6 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
           H <- H_old
           print("Divergence criterion reached")
         }
-#        W_old <- W
-#        H_old <- H
       }
     }  
   }
@@ -110,16 +108,15 @@ PGNMF <- function (X, nmfMod, tol = 1e-5, maxIter = 500, timeLimit = 300, checkD
 }
 
 
-#' Algorithm for solving convex non-negative least squares subproblem using projected gradients 
-#' 
-#' @param X Input data matrix
-#' @param W NMF basis matrix
-#' @param Hinit Initial NMF coef matrix
-#' @param tol Tolerance for a relative stopping condition
-#' @param maxIter Maximum number of iterations
-#' @return List containing updated H matrix, its gradient and number of iterations
-#' @author Nicolas Sauwen
-#' @export
+## #' Algorithm for solving convex non-negative least squares subproblem using projected gradients 
+## #' 
+## #' @param X Input data matrix
+## #' @param W NMF basis matrix
+## #' @param Hinit Initial NMF coef matrix
+## #' @param tol Tolerance for a relative stopping condition
+## #' @param maxIter Maximum number of iterations
+## #' @return List containing updated H matrix, its gradient and number of iterations
+## #' @author Nicolas Sauwen
 nlsSubProb <- function(X, W, Hinit, tol, maxIter) {
   H <- Hinit
   WtX <- t(W)%*%X
@@ -172,30 +169,33 @@ nlsSubProb <- function(X, W, Hinit, tol, maxIter) {
   return(nlsOutput)
 }
 
-#' This function performs a divergence check, by comparing the current 
-#' NMF sources with the initial ones. 3 divergence criteria are implemented.
-#' 
-#' @param W Current NMF source matrix
-#' @param W0 Initial NMF source matrix
-#' @return Boolean value, indicating whether or not one of the 
-#' divergence criteria has been reached
-#' @author Nicolas Sauwen
-#' @export
+## #' This function performs a divergence check, by comparing the current 
+## #' NMF sources with the initial ones. 3 divergence criteria are implemented.
+## #' 
+## #' @param W Current NMF source matrix
+## #' @param W0 Initial NMF source matrix
+## #' @return Boolean value, indicating whether or not one of the 
+## #' divergence criteria has been reached
+## #' @author Nicolas Sauwen
 divergenceCheck <- function(W, W0) {
   
   checkDivergence <- FALSE
   
   # Normalize columns of W and W0:
-  N0 <- diag(sqrt(t(W0)%*%W0))
+  N0 <- sqrt(diag(t(W0)%*%W0))
   N_W0 <- matrix(N0,nrow = nrow(W0),ncol = ncol(W0),byrow = T)
   W0 <- W0/N_W0
-  N <- diag(sqrt(t(W)%*%W))
+  N <- sqrt(diag(t(W)%*%W))
   N_W <- matrix(N,nrow = nrow(W),ncol = ncol(W),byrow = T)
   W <- W/N_W
   
-  S_W0W0 <- sqrt(t(W0)%*%W0)
-  S_WW <- sqrt(t(W)%*%W)
-  S_WW0 <- sqrt(t(W)%*%W0)
+#  S_W0W0 <- sqrt(t(W0)%*%W0)
+#  S_WW <- sqrt(t(W)%*%W)
+#  S_WW0 <- sqrt(t(W)%*%W0)
+	
+	S_W0W0 <- (t(W0)%*%W0)
+	S_WW <- (t(W)%*%W)
+	S_WW0 <- (t(W)%*%W0)
   
   # Divergence check1: non-diagonal correlation values should not exceed a certain threshold 
   thr_check1 <- 0.97

@@ -9,25 +9,24 @@
 # sliceRange must be a 2-element vector specifying the analyzed slice range.
 ###############################################################################
 
-#' Validation tool for (h)NMF based segmentation.
-#' 
-#' This function converts NMF abundance maps to actual segmentation results,
-#' and validates the result with respect to manual segmentation. The manual segmentation results 
-#' are provided in nifti (.nii) format. Segmentation overlap is quantified by means of the Dice-score.
-#' Input to the method is the NMF input data and a valid nmfModel object obtained from the NMF package.
-#' sliceRange must be a 2-element vector specifying the analyzed slice range.
-#' 
-#' @param nmfInput List with NMF input attributes
-#' @param nmfModel NMF model (in accordance with NMF package definition)
-#' @param sliceRange 2-element vector containing first and last image slice number
-#' that were analyzed
-#' @param indTumor,indNecrosis,indEdema Indices of the NMF sources representing 
-#' tumor, necrosis and edema, respectively
-#' @param tumorNiftiFile,necrosisNiftiFile,edemaNiftiFile Character strings containing 
-#' the path to the manual segmentation files (in nifti format) for tumor, necrosis and edema
-#' @return Dice scores quantifying the segmentation quality are printed in the R console
-#' @author Nicolas Sauwen
-#' @export
+## #' Validation tool for (h)NMF based segmentation.
+## #' 
+## #' This function converts NMF abundance maps to actual segmentation results,
+## #' and validates the result with respect to manual segmentation. The manual segmentation results 
+## #' are provided in nifti (.nii) format. Segmentation overlap is quantified by means of the Dice-score.
+## #' Input to the method is the NMF input data and a valid nmfModel object obtained from the NMF package.
+## #' sliceRange must be a 2-element vector specifying the analyzed slice range.
+## #' 
+## #' @param nmfInput List with NMF input attributes
+## #' @param nmfModel NMF model (in accordance with NMF package definition)
+## #' @param sliceRange 2-element vector containing first and last image slice number
+## #' that were analyzed
+## #' @param indTumor,indNecrosis,indEdema Indices of the NMF sources representing 
+## #' tumor, necrosis and edema, respectively
+## #' @param tumorNiftiFile,necrosisNiftiFile,edemaNiftiFile Character strings containing 
+## #' the path to the manual segmentation files (in nifti format) for tumor, necrosis and edema
+## #' @return Dice scores quantifying the segmentation quality are printed in the R console
+## #' @author Nicolas Sauwen
 validateNMFResult <- function(nmfInput, nmfModel, sliceRange, indTumor = 0, indNecrosis = 0, indEdema = 0, tumorNiftiFile = NULL, necrosisNiftiFile = NULL, edemaNiftiFile = NULL) {
  
 #  library(oro.nifti)

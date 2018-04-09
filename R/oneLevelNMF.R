@@ -17,10 +17,22 @@
 #' @importFrom stats runif
 #' @author Nicolas Sauwen
 #' @export
+#' @examples
+#' 
+#' # random data
+#' X <- matrix(runif(10*20), 10,20)
+#' 
+#' # run NMF with default algorithm, 5 runs with random initialization
+#' NMFresult1 <- oneLevelNMF(X, rank=2, nruns=5)
+#' 
+#' # run NMF with specified algorithm and with initialized sources
+#' W0 <- initializeSPA(X,3)
+#' NMFresult2 <- oneLevelNMF(X, rank=3, method="HALSacc", initData = W0)
+
 oneLevelNMF <- function(X, rank, initData = NULL, method = "PGNMF", nruns = 10, checkDivergence = TRUE){
 	
 	X <- preProcesInputData(X)
-	seed <- initializeNMFModel(X, initData)
+	seed <- initializeNMF(X, initData)
 	
 	if( is.null( seed ) ) {
 #    NMFResult               <- nmf( X , rank = rank, method = get(method), nrun = nruns, checkDivergence = F, .options="-p")
@@ -108,19 +120,19 @@ preProcesInputData <- function(X){
 #' @importFrom stats coefficients approx
 #' @importFrom NMF nmfModel
 #' @export
-initializeNMFModel     <- function(X, initData = NULL) {
+initializeNMF     <- function(X, initData = NULL) {
 	
-	if(is.matrix( initData ) & nrow(initData) == nrow(X)) {
+	if(is.null(initData)) {
+		NMFInit            <- NULL
+		return(NMFInit)
+	}
+	else if(is.matrix( initData ) & nrow(initData) == nrow(X)) {
 		W0                 <-  initData
 		rank               <-  ncol( W0 )
 	}
 	else if(is.matrix( initData ) & ncol(initData) == ncol(X)) {
 		H0                 <-  initData
 		rank               <-  nrow( H0 )
-	}
-	else if(is.null(initData)) {
-		NMFInit            <- NULL
-		return(NMFInit)
 	}
 	else {
 		warning("NMF initialization is not provided in the right format. NMF will be ran with random initialization instead")
@@ -163,7 +175,7 @@ initializeNMFModel     <- function(X, initData = NULL) {
 scaleNMFResult      <- function(NMFResult) {
 	
 	W                 <- basis(NMFResult)
-	N                 <- diag(sqrt(t(W)%*%W))
+	N                 <- sqrt(diag(t(W)%*%W))
 	N_W               <- matrix(N,nrow = nrow(W),ncol = ncol(W),byrow = T)
 	W                 <- W/N_W
 	H                 <- coef(NMFResult)

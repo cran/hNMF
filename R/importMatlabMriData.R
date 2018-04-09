@@ -3,11 +3,10 @@
 # Author: nsauwen
 ###############################################################################
 
-#' Interactive method to select Matlab (.mat) input dataset to perform 
-#' (h)NMF analyses
-#' @return List of input data attributes
-#' @author Nicolas Sauwen
-#' @export
+## #' Interactive method to select Matlab (.mat) input dataset to perform 
+## #' (h)NMF analyses
+## #' @return List of input data attributes
+## #' @author Nicolas Sauwen
 importMatlabMriData <- function() {
   
 #  library(R.matlab)

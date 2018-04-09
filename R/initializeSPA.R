@@ -11,6 +11,14 @@
 #' @return Matrix with initialized sources as its columns
 #' @author Nicolas Sauwen
 #' @export
+#' @examples
+#' 
+#' # random data
+#' X <- matrix(runif(10*20), 10,20)
+#' 
+#' # Create initial source matrix for 3 sources
+#' W0 <- initializeSPA(X,3)
+
 initializeSPA <- function(data,nSources) {
 
   inds <- c()
