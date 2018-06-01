@@ -10,7 +10,7 @@ vol. 32, no. 1, pp. 45-55, 2010.}
 semiNMF(X, nmfMod, maxiter = 2000, checkDivergence = FALSE)
 }
 \arguments{
-\item{X}{Input data matrix, each column represents one data point 
+\item{X}{Input data matrix, each column represents one observation 
 and the rows correspond to the different features}
 
 \item{nmfMod}{Valid NMF model, containing initialized factor matrices

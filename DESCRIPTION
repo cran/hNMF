@@ -1,6 +1,6 @@
 Package: hNMF
 Title: Hierarchical Non-Negative Matrix Factorization
-Version: 0.5
+Version: 0.6
 Author: Nicolas Sauwen
 Maintainer: Nicolas Sauwen <nicolas.sauwen@openanalytics.eu>
 Description: Hierarchical and single-level non-negative matrix factorization. Several NMF algorithms are available.
@@ -13,6 +13,6 @@ Imports: NMF, oro.nifti, tcltk, nnls, R.matlab, spatialfil,
 RoxygenNote: 6.0.1.9000
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2018-04-09 10:47:34 UTC; nsauwen
+Packaged: 2018-05-04 09:35:17 UTC; nsauwen
 Repository: CRAN
-Date/Publication: 2018-04-09 11:47:55 UTC
+Date/Publication: 2018-06-01 12:30:06 UTC

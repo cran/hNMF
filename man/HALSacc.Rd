@@ -9,7 +9,7 @@ Nonnegative matrix factorization: complexity, algorithms and applications
 HALSacc(X, nmfMod, alpha = 1, maxiter = 1000, checkDivergence = FALSE)
 }
 \arguments{
-\item{X}{Input data matrix, each column represents one data point 
+\item{X}{Input data matrix, each column represents one observation 
 and the rows correspond to the different features}
 
 \item{nmfMod}{Valid NMF model, containing initialized factor matrices

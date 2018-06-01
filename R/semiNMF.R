@@ -13,7 +13,7 @@
 #' "Convex and semi-nonnegative matrix factorizations",
 #' IEEE Transations on Pattern Analysis and Machine Intelligence,
 #' vol. 32, no. 1, pp. 45-55, 2010.
-#' @param X Input data matrix, each column represents one data point 
+#' @param X Input data matrix, each column represents one observation 
 #' and the rows correspond to the different features
 #' @param nmfMod Valid NMF model, containing initialized factor matrices
 #' (in accordance with the NMF package definition) 

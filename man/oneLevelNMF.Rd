@@ -8,7 +8,8 @@ oneLevelNMF(X, rank, initData = NULL, method = "PGNMF", nruns = 10,
   checkDivergence = TRUE)
 }
 \arguments{
-\item{X}{input matrix}
+\item{X}{input matrix. Each column represents one observation 
+and the rows correspond to the different features}
 
 \item{rank}{number of NMF components to be found}
 

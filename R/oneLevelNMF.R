@@ -5,7 +5,8 @@
 
 #' Perform Non-Negative Matrix factorization
 #' 
-#' @param X input matrix
+#' @param X input matrix. Each column represents one observation 
+#' and the rows correspond to the different features
 #' @param rank number of NMF components to be found
 #' @param initData either of the NMF factor matrices, with initial values 
 #' @param method name of the NMF method to be used. "PGNMF" (default) and "HALSacc" 

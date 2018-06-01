@@ -13,7 +13,7 @@
 #' Accelerated hierarchical alternating least squares NMF. For a reference to the method, see N. Gillis, 
 #' Nonnegative matrix factorization: complexity, algorithms and applications 
 #' [Section 4.2, Algo. 6], PhD thesis, Université catholique de Louvain, February 2011.
-#' @param X Input data matrix, each column represents one data point 
+#' @param X Input data matrix, each column represents one observation 
 #' and the rows correspond to the different features
 #' @param nmfMod Valid NMF model, containing initialized factor matrices
 #' (in accordance with the NMF package definition) 
