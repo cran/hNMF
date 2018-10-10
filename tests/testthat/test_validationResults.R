@@ -13,18 +13,18 @@ context("Computation of Dice-scores from segmentation result")
 setwd(system.file("extdata",package="hNMF"))
 
 #tumorNiftiFile <- system.file("extdata","tumor.nii",package="hNMF")
-tumorNifti <- oro.nifti::readNIfTI("tumor.nii",reorient = FALSE)
+tumorNifti <- oro.nifti::readNIfTI(file.path(system.file('extdata', package = 'hNMF'), "tumor.nii"),reorient = FALSE)
 tumor <- oro.nifti::img_data(tumorNifti)
 tumor <- aperm(tumor,c(2,1,3))
 
 
 #necrosisNiftiFile <- system.file("extdata","necrosis.nii",package="hNMF")
-necrosisNifti <- oro.nifti::readNIfTI("necrosis.nii",reorient = FALSE)
+necrosisNifti <- oro.nifti::readNIfTI(file.path(system.file('extdata', package = 'hNMF'), "necrosis.nii"),reorient = FALSE)
 necrosis <- oro.nifti::img_data(necrosisNifti)
 necrosis <- aperm(necrosis,c(2,1,3))
 
 #edemaNiftiFile <- system.file("extdata","edema.nii",package="hNMF")
-edemaNifti <- oro.nifti::readNIfTI("edema.nii",reorient = FALSE)
+edemaNifti <- oro.nifti::readNIfTI(file.path(system.file('extdata', package = 'hNMF'), "edema.nii"),reorient = FALSE)
 edema <- oro.nifti::img_data(edemaNifti)
 edema <- aperm(edema,c(2,1,3))
 

@@ -1,4 +1,4 @@
-1d83e9f9ecfcda3c1bb15cbdc9ea1f8f *DESCRIPTION
+3ff9ab33eea1de49a26e79f445ccfe6c *DESCRIPTION
 18fc03643f1ede8ba681f966ec9f59c3 *NAMESPACE
 7c2b095b6318bbf742c18da6c2e6a506 *R/HALSacc.R
 889dff1fa9db7bf294699fc502328d11 *R/PGNMF.R
@@ -8,10 +8,10 @@ d1d1971d6bff7596ab5c5128a60413b8 *R/imoverlay.R
 89b1144ff785ed0a099abc7aa27acd17 *R/importMatlabMriData.R
 3e23bb651ff806833791b8c52dc077dd *R/initializeSPA.R
 f7211a12d0409e03900369fc8b7c1ecf *R/makeFigure.R
-2818e2e67309309605087f135c7b91f5 *R/oneLevelNMF.R
+d45d2420617bd54ea6da66a76dab74b9 *R/oneLevelNMF.R
 c80442714c3244ce651661f3edb6744a *R/plotAbundances.R
-748236eb9d26e294be77f57f2435080a *R/residualNMF.R
-947595c4b392b71155b082e7bf4a9035 *R/semiNMF.R
+80aabe7826b7c7e6a98970e63fda3332 *R/residualNMF.R
+3f335e412dac250b4b4f8eca43645d67 *R/semiNMF.R
 1dc54d145a6d38e101119ecd7b0365ef *R/spaSelect.R
 776377ecf1fb407a52f8bd9b0d5ea7d6 *R/validateNMFResult.R
 9c561902984d939db1ecc84d4caf559c *R/viewNMFResult.R
@@ -30,4 +30,4 @@ ca4da0494c2e9fa28659e5b4ce3cf51e *man/preProcesInputData.Rd
 9012a535d00de102a383e5ebd3f0a80c *man/scaleNMFResult.Rd
 456a5f34f891d97acdbec248db5eec1c *man/semiNMF.Rd
 77e5053c82f70a3ce74ccc6628981bc7 *tests/testthat.R
-199739960986151a79a21154a71afb51 *tests/testthat/test_validationResults.R
+1e555569092f30be6967a34eb506258a *tests/testthat/test_validationResults.R

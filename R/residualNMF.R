@@ -13,8 +13,8 @@
 #' @export
 residualNMF <- function(X, nmfFit) {
 	
-	H <- coef(nmfFit)
-	W <- basis(nmfFit)
+	H <- NMF::coef(nmfFit)
+	W <- NMF::basis(nmfFit)
 	residuMat <- X-W%*%H
 	absRes <- apply(residuMat^2, 2, sum)
 	absX <- apply(X^2, 2, sum)

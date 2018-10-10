@@ -57,10 +57,17 @@ semiNMF <- function (X,nmfMod, maxiter = 2000, checkDivergence = FALSE) {
 	  B <- t(W)%*%W
 	  Bp <- (abs(B)+B)/2
 	  Bn <- (abs(B)-B)/2
-	  H <- H*sqrt((t(Ap) + t(Bn)%*%H)/(t(An) + t(Bp)%*%H))
+	  PP <- t(An) + t(Bp)%*%H
+	  if(length(which(PP==0))>0){
+		  PP[PP==0] <- min(PP[PP!=0])
+	  }
+	  H <- H*sqrt((t(Ap) + t(Bn)%*%H)/PP)
 	  
 	  err[iter+1] <- norm(X-W%*%H,'f')
 	  relError <- abs(err[iter+1]-err[iter])/err[iter]
+	  if(is.na(relError)){
+		  qq <- 3
+	  }
 	  
 	  if(iter == 1 | iter == 11) { # First condition is to avoid that initial sources could be used for final result
 		  W_old <- W

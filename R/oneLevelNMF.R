@@ -44,15 +44,15 @@ oneLevelNMF <- function(X, rank, initData = NULL, method = "PGNMF", nruns = 10, 
 		for(iRun in 1:nruns) {	
 			W0 <- matrix(runif(rank*nrow(X)), nrow = nrow(X), ncol = rank)	
 			H0 <- matrix(runif(rank*ncol(X)), nrow = rank, ncol = ncol(X))	
-			seed <- nmfModel( W = W0 , H = H0 )
+			seed <- NMF::nmfModel( W = W0 , H = H0 )
 			if(method == "PGNMF"){
 				NMFResult_temp <- PGNMF(X, nmfMod = seed, checkDivergence = F)
 			}
 			else if(method == "HALSacc"){
 				NMFResult_temp <- HALSacc(X, nmfMod = seed, checkDivergence = F)
 			}
-			W_temp <- basis(NMFResult_temp)
-			H_temp <- coef(NMFResult_temp)
+			W_temp <- NMF::basis(NMFResult_temp)
+			H_temp <- NMF::coef(NMFResult_temp)
 			residu_temp <- norm(X - W_temp%*%H_temp,'f')
 			if(residu_temp < residu) {
 				NMFResult <- NMFResult_temp
@@ -61,7 +61,7 @@ oneLevelNMF <- function(X, rank, initData = NULL, method = "PGNMF", nruns = 10, 
 	}
 	else {
 		# Check if NMF initialization is consistent with specified rank
-		W0                      <- basis(seed)
+		W0                      <- NMF::basis(seed)
 		if(ncol(W0) != rank) {
 			stop("Number of provided pure component X does not correspond to specified NMF rank.")    
 		}
@@ -160,7 +160,7 @@ initializeNMF     <- function(X, initData = NULL) {
 		W0 <- t(W0)
 	}
 
-	NMFInit            <-  nmfModel( W = W0 , H = H0 )
+	NMFInit            <-  NMF::nmfModel( W = W0 , H = H0 )
 	NMFInit            <-  scaleNMFResult(NMFInit)
 	
 	return(NMFInit)
@@ -175,11 +175,11 @@ initializeNMF     <- function(X, initData = NULL) {
 #' @export
 scaleNMFResult      <- function(NMFResult) {
 	
-	W                 <- basis(NMFResult)
+	W                 <- NMF::basis(NMFResult)
 	N                 <- sqrt(diag(t(W)%*%W))
 	N_W               <- matrix(N,nrow = nrow(W),ncol = ncol(W),byrow = T)
 	W                 <- W/N_W
-	H                 <- coef(NMFResult)
+	H                 <- NMF::coef(NMFResult)
 	N_H               <- matrix(N,nrow = nrow(H),ncol = ncol(H))
 	H                 <- H*N_H
 	NMF::basis(NMFResult)  <- W
