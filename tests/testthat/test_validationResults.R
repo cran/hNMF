@@ -10,8 +10,6 @@
 library(hNMF)
 context("Computation of Dice-scores from segmentation result")
 
-setwd(system.file("extdata",package="hNMF"))
-
 #tumorNiftiFile <- system.file("extdata","tumor.nii",package="hNMF")
 tumorNifti <- oro.nifti::readNIfTI(file.path(system.file('extdata', package = 'hNMF'), "tumor.nii"),reorient = FALSE)
 tumor <- oro.nifti::img_data(tumorNifti)
@@ -54,6 +52,6 @@ nmfInput$selectVect <- selectVect
 nmfMod <- NMF::nmfModel(H=H)
 
 test_that("Dice-scores are 100% when segmentation masks are identical", {
-      dice_scores <- validateNMFResult(nmfInput, nmfMod, sliceRange, indTumor = 1, indNecrosis = 2, indEdema = 3, tumorNiftiFile = "tumor.nii", necrosisNiftiFile = "necrosis.nii", edemaNiftiFile = "edema.nii")
+      dice_scores <- validateNMFResult(nmfInput, nmfMod, sliceRange, indTumor = 1, indNecrosis = 2, indEdema = 3, tumorNiftiFile = file.path(system.file('extdata', package = 'hNMF'), "tumor.nii"), necrosisNiftiFile = file.path(system.file('extdata', package = 'hNMF'), "necrosis.nii"), edemaNiftiFile = file.path(system.file('extdata', package = 'hNMF'), "edema.nii"))
       expect_equal(dice_scores, c(100,100,100,100,100))
     })

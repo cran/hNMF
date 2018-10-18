@@ -1,4 +1,4 @@
-3ff9ab33eea1de49a26e79f445ccfe6c *DESCRIPTION
+853427fc09d28aa183ba749391271a1c *DESCRIPTION
 18fc03643f1ede8ba681f966ec9f59c3 *NAMESPACE
 7c2b095b6318bbf742c18da6c2e6a506 *R/HALSacc.R
 889dff1fa9db7bf294699fc502328d11 *R/PGNMF.R
@@ -30,4 +30,4 @@ ca4da0494c2e9fa28659e5b4ce3cf51e *man/preProcesInputData.Rd
 9012a535d00de102a383e5ebd3f0a80c *man/scaleNMFResult.Rd
 456a5f34f891d97acdbec248db5eec1c *man/semiNMF.Rd
 77e5053c82f70a3ce74ccc6628981bc7 *tests/testthat.R
-1e555569092f30be6967a34eb506258a *tests/testthat/test_validationResults.R
+f834b9406cfc2486ebb55e0438b646b6 *tests/testthat/test_validationResults.R
